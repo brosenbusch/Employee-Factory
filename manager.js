@@ -6,18 +6,19 @@ const manager = function(){
     let baseSalary = random().discreteRangeIn(4,9)*10000;
 
     function pay(){
+        let yearlyPay = baseSalary;
         if(workers <=10){
-            workers*250
+            yearlyPay += workers*250;
         }
         else if(workers > 10){
-            workers 
+            yearlyPay += 2500 + (workers-10)*400;
         }
-        let dailyPay = (hours/5)*wage;
-        let weeklyPay = hours*wage;
-        let yearlyPay = weeklyPay*52;
+        let weeklyPay = yearlyPay/52;
+        let dailyPay = weeklyPay/7;
         
-        return [dailyPay, weeklyPay, yearlyPay];  
+        
+        return [yearlyPay, weeklyPay, dailyPay];  
     }
 };
 
-module.exports = worker;
+module.exports = manager;
